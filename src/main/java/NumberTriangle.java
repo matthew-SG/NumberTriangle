@@ -88,7 +88,13 @@ public class NumberTriangle {
      *
      */
     public int retrieve(String path) {
-        return -1;
+        if (path.isEmpty() || isLeaf()) {
+            return root;
+        } else if (path.charAt(0) == 'l') {
+            return left.retrieve(path.substring(1));
+        } else {
+            return  right.retrieve(path.substring(1));
+        }
     }
 
     /** Read in the NumberTriangle structure from a file.
@@ -108,6 +114,7 @@ public class NumberTriangle {
         InputStream inputStream = NumberTriangle.class.getClassLoader().getResourceAsStream(fname);
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 
+      
         // will need to return the top of the NumberTriangle,
         // so might want a variable for that.
         NumberTriangle top = null;
@@ -139,6 +146,7 @@ public class NumberTriangle {
                 roots = leaves;
 
             }
+
 
             //read the next line
             line = br.readLine();
