@@ -64,6 +64,21 @@ public class NumberTriangle {
      */
     public void maxSumPath() {
         // for fun [not for credit]:
+        if (!isLeaf()){
+            left.maxSumPath();
+            int leftSum = left.root + root;
+            right.maxSumPath();
+            int rightSum = right.root + root;
+
+            if (leftSum > rightSum) {
+                root = leftSum;
+            } else {
+                root = rightSum;
+            }
+            setLeft(null);
+            setRight(null);
+
+        }
     }
 
 
